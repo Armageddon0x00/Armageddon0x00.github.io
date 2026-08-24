@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 250" role="img" aria-labelledby="title">
+  <title id="title">Üçgen Türk flaması</title>
+  <defs>
+    <linearGradient id="cloth" x1="0" x2="1">
+      <stop offset="0" stop-color="#b80813"/>
+      <stop offset=".22" stop-color="#e30a17"/>
+      <stop offset=".72" stop-color="#d20915"/>
+      <stop offset="1" stop-color="#a80711"/>
+    </linearGradient>
+    <mask id="crescent-cutout">
+      <rect width="120" height="250" fill="#000"/>
+      <circle cx="60" cy="70" r="25" fill="#fff"/>
+      <circle cx="60" cy="79" r="20" fill="#000"/>
+    </mask>
+  </defs>
+  <path fill="url(#cloth)" d="M0 0h120L60 250Z"/>
+  <path fill="#fff" d="M0 0h120v3H0z" opacity=".22"/>
+  <rect width="120" height="150" fill="#fff" mask="url(#crescent-cutout)"/>
+  <path
+    fill="#fff"
+    transform="rotate(180 60 132.5)"
+    d="m60 119 3.53 10.15 10.74.21-8.56 6.28 3.11 10-8.82-6.14-8.82 6.14 3.11-10-8.56-6.28 10.74-.21z"
+  />
+</svg>

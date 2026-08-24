@@ -892,12 +892,9 @@ a:focus-visible {
 
 .ceremony-pennant {
   position: relative;
-  flex: 0 1 clamp(2.4rem, 4.4vw, 4.8rem);
-  height: var(--drop);
-  background:
-    linear-gradient(105deg, rgba(255, 255, 255, 0.16), transparent 28%),
-    linear-gradient(90deg, #a80711, var(--red) 48%, #b50812);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  flex: none;
+  width: calc(var(--drop) * 0.48rem);
+  height: calc(var(--drop) * 1rem);
   filter: drop-shadow(0 0.75rem 0.6rem rgba(0, 0, 0, 0.35));
   opacity: 0;
   transform: translateY(calc(-100% - 7rem)) rotate(var(--tilt)) scaleY(0.25);
@@ -912,48 +909,10 @@ a:focus-visible {
   transform: translateY(0) rotate(var(--tilt)) scaleY(1);
 }
 
-.ceremony-pennant .flag-crescent {
-  top: 22%;
-  left: 50%;
-  width: 28%;
-}
-
-.ceremony-pennant .flag-star {
-  top: 41%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(12deg);
-}
-
-.flag-crescent {
-  position: absolute;
-  top: 48%;
-  left: 35%;
-  width: 27%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: white;
-  transform: translate(-50%, -50%);
-}
-
-.flag-crescent::after {
-  position: absolute;
-  top: 8%;
-  left: 36%;
-  width: 92%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #d10915;
-  content: "";
-}
-
-.flag-star {
-  position: absolute;
-  top: 48%;
-  left: 62%;
-  color: white;
-  font-size: clamp(0.42rem, 0.9vw, 0.85rem);
-  line-height: 1;
-  transform: translate(-50%, -50%) rotate(12deg);
+.ceremony-pennant img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .standard-field {
@@ -1022,13 +981,25 @@ a:focus-visible {
   left: 50%;
   width: calc(clamp(5.2rem, 8.5vw, 9rem) * var(--flag-scale));
   aspect-ratio: 1.5;
-  background:
-    linear-gradient(105deg, rgba(255, 255, 255, 0.12), transparent 22%),
-    linear-gradient(90deg, #9f0710, var(--red) 48%, #b00812);
+  background: var(--red);
   box-shadow: 0 0.8rem 1.2rem rgba(0, 0, 0, 0.42);
   clip-path: polygon(0 0, 96% 2%, 100% 11%, 96% 24%, 100% 39%, 97% 53%, 100% 68%, 96% 84%, 100% 100%, 0 100%);
   transform-origin: left center;
   animation: standard-wave 3s ease-in-out var(--wave-delay) infinite;
+}
+
+.standard-flag::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(255, 255, 255, 0.14), transparent 24%, rgba(0, 0, 0, 0.1));
+  content: "";
+  pointer-events: none;
+}
+
+.standard-flag img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .standard-field-right .standard-flag {
@@ -1036,10 +1007,6 @@ a:focus-visible {
   left: auto;
   transform-origin: right center;
   animation-name: standard-wave-right;
-}
-
-.standard-flag .flag-star {
-  font-size: calc(clamp(0.62rem, 1.15vw, 1.2rem) * var(--flag-scale));
 }
 
 .ataturk-closing-page {
@@ -1362,6 +1329,11 @@ a:focus-visible {
     height: 4.6rem;
   }
 
+  .ceremony-pennant {
+    width: calc(var(--drop) * 0.58rem);
+    height: calc(var(--drop) * 1.2rem);
+  }
+
   .back-link {
     font-size: 0.7rem;
   }
@@ -1671,7 +1643,19 @@ a:focus-visible {
   .pennant-curtain {
     right: 1.5rem;
     left: 1.5rem;
-    gap: 0.35rem;
+    gap: 0.25rem;
+  }
+
+  .ceremony-pennant {
+    width: calc(var(--drop) * 0.2rem);
+    height: calc(var(--drop) * 0.42rem);
+  }
+
+  .ceremony-pennant:nth-child(2),
+  .ceremony-pennant:nth-child(5),
+  .ceremony-pennant:nth-child(9),
+  .ceremony-pennant:nth-child(12) {
+    display: none;
   }
 
   .battle-standard {

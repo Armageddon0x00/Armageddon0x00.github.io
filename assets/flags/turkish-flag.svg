@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title">
+  <title id="title">Türk bayrağı</title>
+  <rect width="900" height="600" fill="#e30a17"/>
+  <defs>
+    <mask id="crescent-cutout">
+      <rect width="900" height="600" fill="#000"/>
+      <circle cx="300" cy="300" r="150" fill="#fff"/>
+      <circle cx="356" cy="300" r="120" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="900" height="600" fill="#fff" mask="url(#crescent-cutout)"/>
+  <path
+    fill="#fff"
+    d="m605 300-50.73 17.63-1.09 53.7-31.45-42.8-52.41 15.55L500 300l-30.68-44.08 52.41 15.55 31.45-42.8 1.09 53.7z"
+  />
+</svg>

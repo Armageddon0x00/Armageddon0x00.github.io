@@ -179,14 +179,13 @@ const closingScene = document.querySelector("[data-closing-scene]");
 const pennantCurtain = document.querySelector("[data-pennant-curtain]");
 const standardFields = document.querySelectorAll("[data-standard-field]");
 
-const appendFlagEmblem = (flag) => {
-  const crescent = document.createElement("span");
-  const star = document.createElement("span");
-
-  crescent.className = "flag-crescent";
-  star.className = "flag-star";
-  star.textContent = "★";
-  flag.append(crescent, star);
+const appendFlagImage = (flag, source) => {
+  const image = document.createElement("img");
+  image.src = source;
+  image.alt = "";
+  image.decoding = "async";
+  image.draggable = false;
+  flag.append(image);
 };
 
 if (pennantCurtain) {
@@ -195,10 +194,10 @@ if (pennantCurtain) {
   pennantDrops.forEach((drop, index) => {
     const pennant = document.createElement("span");
     pennant.className = "ceremony-pennant";
-    pennant.style.setProperty("--drop", `${drop}rem`);
+    pennant.style.setProperty("--drop", String(drop));
     pennant.style.setProperty("--delay", `${0.08 + index * 0.055}s`);
     pennant.style.setProperty("--tilt", `${index % 2 === 0 ? -1.5 : 1.5}deg`);
-    appendFlagEmblem(pennant);
+    appendFlagImage(pennant, "../assets/flags/turkish-pennant.svg");
     pennantCurtain.append(pennant);
   });
 }
@@ -233,7 +232,7 @@ standardFields.forEach((field) => {
     standard.style.setProperty("--delay", `${0.24 + index * 0.09}s`);
     standard.style.setProperty("--wave-delay", `${-index * 0.22}s`);
 
-    appendFlagEmblem(flag);
+    appendFlagImage(flag, "../assets/flags/turkish-flag.svg");
     standard.append(pole, flag);
     field.append(standard);
   });
