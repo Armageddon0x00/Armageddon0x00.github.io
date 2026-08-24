@@ -212,13 +212,90 @@ a:focus-visible {
   color: var(--red);
 }
 
+.history-ribbon {
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  z-index: 8;
+  width: 100%;
+  height: 7.25rem;
+  border-top: 1px solid rgba(227, 10, 23, 0.65);
+  border-bottom: 1px solid rgba(7, 7, 7, 0.28);
+  background:
+    linear-gradient(90deg, rgba(227, 10, 23, 0.05), transparent 15%, transparent 85%, rgba(227, 10, 23, 0.05)),
+    #aaa59c;
+  color: var(--black);
+  overflow: hidden;
+}
+
+.history-track,
+.history-sequence {
+  display: flex;
+  width: max-content;
+  height: 100%;
+}
+
+.history-track {
+  will-change: transform;
+  animation: history-ribbon 108s linear infinite;
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: auto 5.4rem minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: center;
+  width: clamp(18rem, 21vw, 21rem);
+  height: 100%;
+  margin: 0;
+  padding: 0.8rem 1.15rem;
+  border-right: 1px solid var(--line-dark);
+}
+
+.history-number {
+  align-self: start;
+  padding-top: 0.2rem;
+  color: var(--red);
+  font: 700 0.52rem/1 var(--mono);
+  letter-spacing: 0.12em;
+}
+
+.history-item img {
+  display: block;
+  width: 5.4rem;
+  height: 4.15rem;
+  padding: 0.22rem;
+  border: 1px solid rgba(7, 7, 7, 0.18);
+  background: #d1ccc1;
+  object-fit: contain;
+  box-shadow: 0.35rem 0.35rem 0 rgba(227, 10, 23, 0.1);
+}
+
+.history-copy {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+  text-align: left;
+}
+
+.history-copy strong {
+  font: 700 clamp(0.58rem, 0.8vw, 0.7rem)/1.35 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.history-copy small {
+  color: #68645d;
+  font: italic 400 0.76rem/1 var(--display);
+}
+
 .ataturk-hero {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(24rem, 0.9fr);
   align-items: center;
   min-height: 100svh;
-  padding: 8rem var(--gutter) 5rem;
+  padding: 14.5rem var(--gutter) 5rem;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
@@ -339,7 +416,7 @@ a:focus-visible {
   z-index: 2;
   align-self: center;
   justify-self: end;
-  width: min(42vw, 37rem);
+  width: min(42vw, 37rem, calc((100svh - 21rem) / 1.05));
   margin: 0;
   transform: translate3d(calc(var(--portrait-x, 0) * 1px), calc(var(--portrait-y, 0) * 1px), 0);
   transition: transform 140ms ease-out;
@@ -835,6 +912,18 @@ a:focus-visible {
   transform: translateY(0) rotate(var(--tilt)) scaleY(1);
 }
 
+.ceremony-pennant .flag-crescent {
+  top: 22%;
+  left: 50%;
+  width: 28%;
+}
+
+.ceremony-pennant .flag-star {
+  top: 41%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(12deg);
+}
+
 .flag-crescent {
   position: absolute;
   top: 48%;
@@ -1213,6 +1302,12 @@ a:focus-visible {
   }
 }
 
+@keyframes history-ribbon {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes standard-wave {
   0%,
   100% {
@@ -1250,6 +1345,21 @@ a:focus-visible {
   .corner-header {
     min-height: 6rem;
     padding-inline: var(--wide-gutter);
+  }
+
+  .history-ribbon {
+    top: 6rem;
+    height: 8rem;
+  }
+
+  .history-item {
+    grid-template-columns: auto 6rem minmax(0, 1fr);
+    width: 23rem;
+  }
+
+  .history-item img {
+    width: 6rem;
+    height: 4.6rem;
   }
 
   .back-link {
@@ -1387,7 +1497,7 @@ a:focus-visible {
   .ataturk-hero {
     grid-template-columns: 1fr;
     align-items: end;
-    padding-top: 8.5rem;
+    padding-top: 14.5rem;
   }
 
   .hero-copy {
@@ -1432,6 +1542,35 @@ a:focus-visible {
     min-height: 4.8rem;
   }
 
+  .history-ribbon {
+    top: 4.8rem;
+    height: 6.2rem;
+  }
+
+  .history-item {
+    grid-template-columns: auto 4.25rem minmax(0, 1fr);
+    gap: 0.65rem;
+    width: 17rem;
+    padding: 0.65rem 0.8rem;
+  }
+
+  .history-item img {
+    width: 4.25rem;
+    height: 3.35rem;
+  }
+
+  .history-copy {
+    gap: 0.35rem;
+  }
+
+  .history-copy strong {
+    font-size: 0.55rem;
+  }
+
+  .history-copy small {
+    font-size: 0.68rem;
+  }
+
   .back-link > span:last-child {
     display: none;
   }
@@ -1470,8 +1609,8 @@ a:focus-visible {
 
   .ataturk-hero {
     display: block;
-    min-height: 57rem;
-    padding-top: 7rem;
+    min-height: 61rem;
+    padding-top: 13rem;
   }
 
   .hero-copy h1 {
@@ -1642,5 +1781,20 @@ a:focus-visible {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  .history-ribbon {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .history-track {
+    animation: none !important;
+    transform: none;
+  }
+
+  .history-sequence[aria-hidden="true"] {
+    display: none;
   }
 }
