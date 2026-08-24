@@ -112,7 +112,31 @@ if (portrait && !reducedMotion.matches) {
   );
 }
 
-const galleryItems = [...document.querySelectorAll("[data-gallery-item]")];
+const archiveTrack = document.querySelector("[data-archive-track]");
+const archiveSequence = document.querySelector("[data-archive-sequence]");
+const galleryItems = [
+  ...(archiveSequence?.querySelectorAll("[data-gallery-item]") ?? []),
+];
+
+galleryItems.forEach((item, index) => {
+  item.dataset.galleryIndex = String(index);
+});
+
+if (archiveTrack && archiveSequence) {
+  const ribbonCopy = archiveSequence.cloneNode(true);
+  ribbonCopy.removeAttribute("data-archive-sequence");
+  ribbonCopy.setAttribute("aria-hidden", "true");
+
+  ribbonCopy.querySelectorAll("[data-gallery-item]").forEach((item) => {
+    item.tabIndex = -1;
+    item.removeAttribute("data-reveal");
+    item.classList.add("is-visible");
+  });
+
+  archiveTrack.append(ribbonCopy);
+}
+
+const galleryTriggers = [...document.querySelectorAll("[data-gallery-item]")];
 const lightbox = document.querySelector("#archive-lightbox");
 const lightboxImage = lightbox?.querySelector("[data-lightbox-image]");
 const lightboxNumber = lightbox?.querySelector("[data-lightbox-number]");
@@ -132,10 +156,10 @@ const showImage = (index) => {
   lightboxCaption.textContent = item.dataset.caption ?? "Arşiv";
 };
 
-galleryItems.forEach((item, index) => {
+galleryTriggers.forEach((item) => {
   item.addEventListener("click", () => {
     if (!lightbox) return;
-    showImage(index);
+    showImage(Number(item.dataset.galleryIndex ?? 0));
     lightbox.showModal();
     document.body.classList.add("lightbox-open");
   });

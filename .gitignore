@@ -1,0 +1,18 @@
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Editor metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local tooling and diagnostics
+*.log
+.cache/
+
+# JavaScript dependencies, if tooling is introduced later
+node_modules/
+

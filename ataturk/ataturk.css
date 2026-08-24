@@ -593,7 +593,12 @@ a:focus-visible {
 }
 
 .archive {
-  padding: clamp(8rem, 12vw, 12rem) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100svh;
+  min-height: 100svh;
+  padding: clamp(7rem, 11vh, 10rem) 0 clamp(4rem, 8vh, 7rem);
   background:
     linear-gradient(90deg, transparent calc(25% - 1px), rgba(240, 236, 226, 0.045) 25%, transparent calc(25% + 1px)),
     linear-gradient(90deg, transparent calc(50% - 1px), rgba(240, 236, 226, 0.045) 50%, transparent calc(50% + 1px)),
@@ -606,32 +611,80 @@ a:focus-visible {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 4rem;
   align-items: end;
-  margin-bottom: clamp(4rem, 8vw, 8rem);
+  width: 100%;
+  margin-bottom: clamp(2.5rem, 5vh, 4.5rem);
+  padding-inline: var(--gutter);
 }
 
 .archive-heading h2 {
   margin-bottom: 0;
 }
 
-.archive-heading > p {
-  max-width: 31rem;
+.archive-intro {
+  display: grid;
+  justify-items: start;
+  max-width: 40rem;
   margin: 0 0 0.6rem auto;
   color: var(--muted);
-  font-family: var(--display);
-  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-  line-height: 1.65;
 }
 
-.archive-grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: clamp(0.8rem, 1.5vw, 1.5rem);
+.archive-route {
+  font: 700 clamp(0.62rem, 0.8vw, 0.76rem)/1.65 var(--mono);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.archive-constant {
+  margin-top: 0.55rem;
+  color: var(--cream-dark);
+  font: italic 400 clamp(1.2rem, 1.8vw, 1.75rem)/1 var(--display);
+}
+
+.archive-intro strong {
+  margin-top: 0.08em;
+  color: var(--red);
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 4vw, 4.5rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+
+.archive-ribbon {
+  --archive-gap: clamp(0.8rem, 1.25vw, 1.4rem);
+  width: 100%;
+  height: clamp(17rem, 46svh, 31rem);
+  min-height: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+}
+
+.archive-track,
+.archive-sequence {
+  display: flex;
+  gap: var(--archive-gap);
+  width: max-content;
+  height: 100%;
+}
+
+.archive-track {
+  will-change: transform;
+  animation: archive-ribbon 78s linear infinite;
+}
+
+.archive-ribbon:focus-within .archive-track,
+.lightbox-open .archive-track {
+  animation-play-state: paused;
 }
 
 .archive-card {
   position: relative;
   display: block;
-  min-height: 19rem;
+  flex: none;
+  width: auto;
+  height: 100%;
   min-width: 0;
   padding: 0;
   border: 0;
@@ -642,23 +695,18 @@ a:focus-visible {
 }
 
 .archive-card-wide {
-  grid-column: span 7;
   aspect-ratio: 1.5;
 }
 
 .archive-card-medium {
-  grid-column: span 5;
   aspect-ratio: 1.12;
 }
 
 .archive-card-large {
-  grid-column: span 8;
   aspect-ratio: 1.45;
 }
 
 .archive-card-portrait {
-  grid-column: span 4;
-  grid-row: span 2;
   aspect-ratio: 0.72;
 }
 
@@ -972,6 +1020,12 @@ a:focus-visible {
   }
 }
 
+@keyframes archive-ribbon {
+  to {
+    transform: translateX(calc(-50% - (var(--archive-gap) / 2)));
+  }
+}
+
 @keyframes star-pulse {
   50% {
     opacity: 0.45;
@@ -1057,7 +1111,7 @@ a:focus-visible {
     width: min(34rem, 100%);
   }
 
-  .archive {
+  .archive-heading {
     padding-inline: var(--wide-gutter);
   }
 
@@ -1065,9 +1119,24 @@ a:focus-visible {
     font-size: clamp(8rem, 6.5vw, 10rem);
   }
 
-  .archive-heading > p {
-    max-width: 38rem;
-    font-size: 1.5rem;
+  .archive-intro {
+    max-width: 50rem;
+  }
+
+  .archive-route {
+    font-size: 0.82rem;
+  }
+
+  .archive-constant {
+    font-size: 2rem;
+  }
+
+  .archive-intro strong {
+    font-size: 5rem;
+  }
+
+  .archive-ribbon {
+    height: clamp(31rem, 45svh, 46rem);
   }
 
   .closing::before {
@@ -1245,32 +1314,6 @@ a:focus-visible {
 
   .gif-frame {
     box-shadow: 1.1rem 1.1rem 0 var(--red);
-  }
-
-  .archive-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .archive-card,
-  .archive-card-wide,
-  .archive-card-medium,
-  .archive-card-large {
-    grid-column: span 2;
-    min-height: 15rem;
-    aspect-ratio: 1.25;
-  }
-
-  .archive-card-portrait {
-    grid-column: span 1;
-    grid-row: span 1;
-    min-height: 21rem;
-    aspect-ratio: 0.72;
-  }
-
-  .archive-card-portrait + .archive-card {
-    grid-column: span 1;
-    min-height: 21rem;
-    aspect-ratio: 0.72;
   }
 
   .closing {
