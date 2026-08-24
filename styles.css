@@ -166,6 +166,48 @@ a:focus-visible {
   transform-origin: left;
 }
 
+.ataturk-corner-link {
+  display: inline-flex;
+  gap: 0.7rem;
+  align-items: center;
+  justify-self: end;
+  font: 600 0.62rem/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.ataturk-corner-mark {
+  position: relative;
+  width: 0.9rem;
+  aspect-ratio: 1;
+  border: 1px solid #e30a17;
+  border-radius: 50%;
+  transition: background 180ms ease, box-shadow 180ms ease;
+}
+
+.ataturk-corner-mark::after {
+  position: absolute;
+  top: 50%;
+  left: 62%;
+  width: 0.62rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ink);
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.ataturk-corner-link:hover {
+  color: #ff747c;
+}
+
+.ataturk-corner-link:hover .ataturk-corner-mark {
+  background: #e30a17;
+  box-shadow: 0 0 1.2rem rgba(227, 10, 23, 0.45);
+}
+
 .hero {
   position: relative;
   display: grid;
