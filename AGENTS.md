@@ -52,3 +52,10 @@ xmllint --html --noout ataturk/index.html
 ```
 
 Also confirm that both local preview URLs return HTTP 200 and that the page has no horizontal overflow at the affected breakpoints.
+
+## Post-push verification
+
+- Fetch or inspect the public repository and confirm local `HEAD`, `origin/main`, and the public `main` branch resolve to the same commit SHA; do not treat successful push output alone as final verification.
+- Check the public GitHub Actions run for that exact SHA and confirm the Pages workflow reached `completed / success`. If it is pending or failed, report that state instead of claiming the site is live.
+- Verify `https://catakan.net/` and `https://catakan.net/ataturk/` return HTTP 200, then confirm the deployed HTML contains a unique marker from the pushed change and no copy that was supposed to be removed.
+- Finish with a clean-worktree check and report the deployed commit SHA, Actions result or run link, and live-site verification outcome.
