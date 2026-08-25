@@ -4,7 +4,7 @@ This repository is the source for the main personal site at `https://catakan.net
 
 ## Site map
 
-- `/` is the primary `catakan.net` experience and internet banner: identity, manifesto, selected cyber security research, an animated penetration and exploitation flow, and external signals.
+- `/` is the primary `catakan.net` experience and internet banner: identity, manifesto, selected cyber security research, certifications, an animated penetration and exploitation flow, and external signals.
 - `/ataturk/` is the standalone Atatürk Köşesi experience.
 - `blog.catakan.net` is currently only a reserved, dormant destination mentioned inside the main page. It is not a separate page in this repository.
 
@@ -15,6 +15,7 @@ This repository is the source for the main personal site at `https://catakan.net
 - `ataturk_pictures/` contains the Atatürk archive media used by that page.
 - `assets/research/` contains locally hosted research documents.
 - `assets/generic_images/` contains locally hosted visual assets used by the main page.
+- `.well-known/security.txt` publishes the RFC 9116 vulnerability-reporting contact for `catakan.net`; keep its required expiry current.
 
 ## Local preview
 
@@ -33,6 +34,7 @@ Then open `http://127.0.0.1:4173/` or `http://127.0.0.1:4173/ataturk/`.
 - Translate research-inspired attack flows into anonymous technical patterns. Named destinations and locally hosted research artifacts explicitly selected by the project owner are exceptions.
 - Preserve the full-page vertical scroll-snap behavior on both pages.
 - On the main page, keep the selected research card and the dormant `blog.catakan.net` node together as one visual unit and one desktop snap viewport.
+- Keep the certifications ledger as one dedicated snap viewport with all eight credentials visible at supported desktop, tablet, and standard mobile sizes.
 - Treat each primary Atatürk section as one snap viewport unless its content intentionally requires internal vertical travel.
 - Preserve Turkish spelling and diacritics in visible copy and accessibility text.
 - Use `193∞`, never `1938`, throughout the Atatürk Corner.

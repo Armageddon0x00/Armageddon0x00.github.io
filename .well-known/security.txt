@@ -1,0 +1,5 @@
+# Security vulnerability reports for catakan.net
+Contact: mailto:catakan@catakan.net
+Expires: 2027-08-24T23:59:59Z
+Preferred-Languages: en, tr
+Canonical: https://catakan.net/.well-known/security.txt

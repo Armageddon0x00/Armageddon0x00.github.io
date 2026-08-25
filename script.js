@@ -1,5 +1,6 @@
 const year = document.querySelector("#year");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const certifications = document.querySelector("[data-certifications]");
 const horsemen = document.querySelector("[data-horsemen]");
 const threatTrack = document.querySelector("[data-threat-track]");
 const threatSequence = document.querySelector("[data-threat-sequence]");
@@ -18,17 +19,22 @@ if (threatTrack && threatSequence) {
   threatTrack.append(threatCopy);
 }
 
-if (horsemen) {
+const activateOnView = (section, threshold) => {
+  if (!section) return;
+
   if (reducedMotion.matches || !("IntersectionObserver" in window)) {
-    horsemen.classList.add("is-active");
+    section.classList.add("is-active");
   } else {
-    const horsemenObserver = new IntersectionObserver(
+    const sectionObserver = new IntersectionObserver(
       ([entry]) => {
-        horsemen.classList.toggle("is-active", entry.isIntersecting);
+        section.classList.toggle("is-active", entry.isIntersecting);
       },
-      { threshold: 0.3 }
+      { threshold }
     );
 
-    horsemenObserver.observe(horsemen);
+    sectionObserver.observe(section);
   }
-}
+};
+
+activateOnView(certifications, 0.25);
+activateOnView(horsemen, 0.3);
