@@ -39,6 +39,7 @@ Then open `http://127.0.0.1:4173/` or `http://127.0.0.1:4173/ataturk/`.
 - Preserve Turkish spelling and diacritics in visible copy and accessibility text.
 - Use `193∞`, never `1938`, throughout the Atatürk Corner.
 - Keep images and documents local; avoid runtime dependencies on third-party hosts.
+- Cloudflare Web Analytics is an owner-approved exception: keep the supplied beacon and token in both HTML entry points unless the project owner requests its removal.
 - Maintain keyboard access, descriptive alternative text, reduced-motion behavior, and responsive layouts.
 - Test normal desktop, mobile, and wide/4K viewports after visual changes.
 - Do not commit temporary screenshots, browser profiles, or diagnostic output.
