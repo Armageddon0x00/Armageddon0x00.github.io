@@ -58,7 +58,7 @@ Also confirm that both local preview URLs return HTTP 200 and that the page has 
 
 ## Post-push verification
 
-- Fetch or inspect the public repository and confirm local `HEAD`, `origin/main`, and the public `main` branch resolve to the same commit SHA; do not treat successful push output alone as final verification.
-- Check the public GitHub Actions run for that exact SHA and confirm the Pages workflow reached `completed / success`. If it is pending or failed, report that state instead of claiming the site is live.
-- Verify `https://catakan.net/` and `https://catakan.net/ataturk/` return HTTP 200, then confirm the deployed HTML contains a unique marker from the pushed change and no copy that was supposed to be removed.
-- Finish with a clean-worktree check and report the deployed commit SHA, Actions result or run link, and live-site verification outcome.
+- After pushing, run `.github/scripts/verify-deployment.sh --marker "unique text from the change"`; add `--absent "removed text"` when applicable.
+- The verifier waits for the exact commit's Pages run, checks local/tracking/public SHA parity, validates live endpoints and markers, confirms repository tooling is not served, and requires a clean worktree.
+- Use `--timeout` or `--interval` only when the default ten-minute wait or five-second poll is unsuitable. `GITHUB_TOKEN` is optional for a higher public API rate limit.
+- Do not claim the deployment is live unless the script finishes with `DEPLOYED`; report its failure and the associated Actions URL instead.
