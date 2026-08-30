@@ -1,0 +1,65 @@
+{
+  "site_name": "catakan.net",
+  "preview_host": "127.0.0.1",
+  "preview_port": 4173,
+  "routes": [
+    {
+      "name": "main",
+      "path": "/",
+      "title_marker": "Catakan — Somewhere in the wire",
+      "snap_targets": [
+        { "name": "hero", "selector": "#top", "fragment": "top" },
+        { "name": "manifesto", "selector": "#manifesto", "fragment": "manifesto" },
+        { "name": "research-blog", "selector": "#research", "fragment": "research" },
+        { "name": "certifications", "selector": "#certifications", "fragment": "certifications" },
+        { "name": "inside-wire", "selector": "#inside-wire", "fragment": "inside-wire" },
+        { "name": "signals-footer", "selector": ".closing-page", "fragment": "signals" }
+      ],
+      "must_not_snap": [".future-node"]
+    },
+    {
+      "name": "ataturk",
+      "path": "/ataturk/",
+      "title_marker": "Atatürk Köşesi — Catakan",
+      "snap_targets": [
+        { "name": "hero", "selector": "#ataturk-top", "fragment": "ataturk-top" },
+        { "name": "cumhuriyet", "selector": "#cumhuriyet", "fragment": "cumhuriyet" },
+        { "name": "archive", "selector": "#arsiv", "fragment": "arsiv" },
+        { "name": "closing", "selector": ".ataturk-closing-page", "fragment": "kapanis" }
+      ],
+      "must_not_snap": []
+    }
+  ],
+  "required_endpoints": [
+    "/",
+    "/ataturk/",
+    "/.well-known/security.txt",
+    "/assets/research/cerberus-research-paper.pdf",
+    "/assets/generic_images/the5horseman.jpg",
+    "/assets/generic_images/ataturk-signature.svg"
+  ],
+  "viewports": [
+    { "name": "mobile", "width": 390, "height": 844 },
+    { "name": "desktop", "width": 1440, "height": 1050 },
+    { "name": "wide-4k", "width": 3840, "height": 2160 }
+  ],
+  "analytics": {
+    "script_url": "https://static.cloudflareinsights.com/beacon.min.js",
+    "token": "1abf451ab2354378adbcb99709777211"
+  },
+  "content_invariants": {
+    "certification_count": 8,
+    "archive_image_count": 10,
+    "historical_flag_count": 22,
+    "forbidden_public_text": [
+      "1938",
+      "Hayatta en hakiki mürşit ilimdir.",
+      "SCEPTER.HTB",
+      "DC01.SCEPTER.HTB",
+      "Kaynak / T.C. Kültür ve Turizm Bakanlığı"
+    ]
+  },
+  "asset_roots": ["assets", "ataturk_pictures"],
+  "large_image_warning_bytes": 400000,
+  "large_document_warning_bytes": 10000000
+}

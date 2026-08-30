@@ -169,8 +169,16 @@ pass "HTTP 200 /, /ataturk/, and /.well-known/security.txt"
 [[ -z "$MARKER" ]] || pass "deployed root HTML contains expected marker"
 [[ -z "$ABSENT_MARKER" ]] || pass "removed marker is absent from deployed root HTML"
 
-TOOLING_STATUS=$(curl -LsS -o /dev/null -w '%{http_code}' "${SITE_URL}/.github/scripts/verify-deployment.sh" || true)
-[[ "$TOOLING_STATUS" == "404" ]] || fail "repository tooling is unexpectedly served with HTTP ${TOOLING_STATUS:-000}"
+for tooling_path in \
+  "/.github/scripts/site.sh" \
+  "/.github/scripts/site-config.json" \
+  "/.github/scripts/site_checks.py" \
+  "/.github/scripts/browser_tools.py" \
+  "/.github/scripts/verify-deployment.sh" \
+  "/.github/scripts/README.md"; do
+  TOOLING_STATUS=$(curl -LsS -o /dev/null -w '%{http_code}' "${SITE_URL}${tooling_path}" || true)
+  [[ "$TOOLING_STATUS" == "404" ]] || fail "repository tooling ${tooling_path} is unexpectedly served with HTTP ${TOOLING_STATUS:-000}"
+done
 pass "repository tooling is not served by catakan.net"
 
 [[ -z "$(git status --porcelain)" ]] || fail "working tree is not clean"
