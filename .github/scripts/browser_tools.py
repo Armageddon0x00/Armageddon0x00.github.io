@@ -305,7 +305,10 @@ def audit_expression(route: dict) -> str:
 
 class ChromiumSession:
     def __init__(self) -> None:
-        self.profile = tempfile.TemporaryDirectory(prefix="catakan-browser-profile-")
+        self.profile = tempfile.TemporaryDirectory(
+            prefix="catakan-browser-profile-",
+            ignore_cleanup_errors=True,
+        )
         executable = find_chromium()
         self.process = subprocess.Popen(
             [
@@ -544,7 +547,7 @@ def capture(config: dict, base_url: str, output: str | None) -> int:
                         )
                         if not found:
                             raise RuntimeError(f"missing selector {target['selector']}")
-                        browser.evaluate("new Promise((resolve) => setTimeout(resolve, 350))", await_promise=True)
+                        browser.evaluate("new Promise((resolve) => setTimeout(resolve, 900))", await_promise=True)
                         png = browser.screenshot()
                         actual_width, actual_height = png_dimensions(png)
                         if (actual_width, actual_height) != (viewport["width"], viewport["height"]):

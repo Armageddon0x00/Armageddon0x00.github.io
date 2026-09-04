@@ -21,6 +21,7 @@ PUBLIC_SOURCE_PATHS = (
     ROOT / "index.html",
     ROOT / "styles.css",
     ROOT / "script.js",
+    ROOT / "credentials.js",
     ROOT / "ataturk/index.html",
     ROOT / "ataturk/ataturk.css",
     ROOT / "ataturk/ataturk.js",
@@ -149,6 +150,29 @@ def check_content(config: dict) -> int:
         errors.append(f"expected {expected_certs} certification cards, found {cert_count}")
     else:
         facts.append(f"all {expected_certs} certification cards are present")
+
+    credentials_js = (ROOT / "credentials.js").read_text(encoding="utf-8")
+    credential_links = re.findall(r'^\s+url:\s+"https://', credentials_js, re.MULTILINE)
+    expected_credential_links = (
+        invariant["credential_verification_count"]
+        + invariant["stackable_verification_count"]
+    )
+    if len(credential_links) != expected_credential_links:
+        errors.append(
+            f"expected {expected_credential_links} credential verification URLs, "
+            f"found {len(credential_links)}"
+        )
+    elif main.classes["certification-verifications"] != expected_certs:
+        errors.append(
+            f"expected {expected_certs} certification verification destinations, "
+            f"found {main.classes['certification-verifications']}"
+        )
+    elif main.classes["stackable-verifications"] != 1:
+        errors.append("the CompTIA stackable verification destination is missing")
+    else:
+        facts.append(
+            f"all {expected_credential_links} credential verification URLs are configured centrally"
+        )
 
     if main.classes["future-node"] != 1:
         errors.append(f"expected one dormant blog future-node, found {main.classes['future-node']}")

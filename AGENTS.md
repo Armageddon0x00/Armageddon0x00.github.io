@@ -10,7 +10,7 @@ This repository is the source for the main personal site at `https://catakan.net
 
 ## Structure
 
-- `index.html`, `styles.css`, and `script.js` power the main `catakan.net` experience.
+- `index.html`, `styles.css`, `script.js`, and `credentials.js` power the main `catakan.net` experience. Keep credential verification URLs centralized in `credentials.js`.
 - `ataturk/` contains the standalone Atatürk Corner served from `/ataturk/`.
 - `ataturk_pictures/` contains the Atatürk archive media used by that page.
 - `assets/research/` contains locally hosted research documents.
@@ -38,10 +38,11 @@ This repository is the source for the main personal site at `https://catakan.net
 
 ### Main page (`https://catakan.net/`)
 
-- Treat `index.html`, `styles.css`, and `script.js` as the dependency-free implementation of the main internet banner. Do not introduce a framework, package dependency, or build step unless the project owner requests it.
+- Treat `index.html`, `styles.css`, `script.js`, and `credentials.js` as the dependency-free implementation of the main internet banner. Do not introduce a framework, package dependency, or build step unless the project owner requests it.
 - Preserve the current content hierarchy: identity hero, manifesto, selected research with the dormant blog node, certifications, the animated penetration and exploitation flow, and the closing external-signals page.
 - Preserve full-page vertical scroll snapping. The hero, manifesto, research/blog unit, certifications ledger, exploitation-flow section, and closing signals/footer unit are each one desktop snap viewport; never turn the blog node into an additional snap stop.
 - Keep the selected research card and `blog.catakan.net` node together as one visual unit. Keep the certifications ledger in its own snap viewport with all eight credentials visible at supported desktop, tablet, and standard mobile sizes.
+- Keep all issuer verification URLs and labels in `credentials.js`. Certification cards declare only their stable `data-credential` key and verification destination; preserve the separate CompTIA stackables group and the two verification links on the combined OSCP / OSCP+ card.
 - Keep visible security narratives self-contained and target-agnostic. Translate research-inspired attack flows into anonymous technical patterns; do not expose third-party case names, box names, source labels, citations, reference sections, or resource appendices unless the project owner explicitly requests them. Named destinations and locally hosted research artifacts explicitly selected by the owner are exceptions.
 - Keep the top-right destination labelled `Atatürk Köşesi`, using Atatürk's locally stored signature rather than a generic icon.
 - Keep images and research documents local. The owner-approved Cloudflare Web Analytics beacon is the only current runtime dependency on a third-party host; preserve its supplied token unless the owner requests its removal.
@@ -88,6 +89,7 @@ Use `.github/scripts/site.sh content` or `assets` for focused diagnosis, not as 
 
 ## Post-push verification
 
+- Use SSH for GitHub write operations. Before pushing, confirm `origin` is `git@github.com:Armageddon0x00/Armageddon0x00.github.io.git`; do not fall back to an HTTPS remote or request a username/token.
 - After every push, run `.github/scripts/site.sh deploy --marker "unique text from the change"`; add `--absent "removed text"` when applicable. Omit `--marker` only for tooling/documentation-only commits that intentionally change no public HTML.
 - The verifier waits for the exact commit's Pages run, checks local/tracking/public SHA parity, validates live endpoints and markers, confirms repository tooling is not served, and requires a clean worktree.
 - Use `--timeout` or `--interval` only when the default ten-minute wait or five-second poll is unsuitable. `GITHUB_TOKEN` is optional for a higher public API rate limit.

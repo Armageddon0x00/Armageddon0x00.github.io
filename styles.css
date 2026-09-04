@@ -1022,6 +1022,59 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
+.certification-summary {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: end;
+}
+
+.stackable-verifications {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.stackable-label {
+  margin-right: 0.2rem;
+  color: #68635d;
+  font: 650 0.43rem/1 var(--mono);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.stackable-verify,
+.certification-verify {
+  position: relative;
+  z-index: 4;
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.5rem;
+  border: 1px solid rgba(255, 100, 56, 0.3);
+  color: #b5afa7;
+  font: 650 0.46rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.stackable-verify {
+  min-width: 3.25rem;
+  padding: 0.4rem 0.48rem;
+  background: rgba(8, 9, 10, 0.58);
+}
+
+.stackable-verify:hover,
+.stackable-verify:focus-visible,
+.certification-verify:hover,
+.certification-verify:focus-visible {
+  border-color: var(--ember-hot);
+  background: rgba(255, 100, 56, 0.12);
+  color: var(--paper);
+}
+
 .certification-total strong {
   padding-right: 1rem;
   border-right: 1px solid var(--line-strong);
@@ -1226,6 +1279,25 @@ a:focus-visible {
 
 .certification-copy {
   min-width: 0;
+}
+
+.certification-title-row {
+  display: flex;
+  gap: clamp(0.6rem, 1vw, 1rem);
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.certification-verifications {
+  display: inline-flex;
+  flex: none;
+  gap: 0.3rem;
+}
+
+.certification-verify {
+  min-width: 3.5rem;
+  padding: 0.34rem 0.42rem;
 }
 
 .certification-domain {
@@ -2150,6 +2222,20 @@ a:focus-visible {
   .certification-domain {
     font-size: 0.43rem;
   }
+
+  .stackable-label {
+    display: none;
+  }
+
+  .certification-title-row {
+    gap: 0.45rem;
+  }
+
+  .certification-verify {
+    min-width: 0;
+    padding: 0.28rem 0.34rem;
+    font-size: 0.4rem;
+  }
 }
 
 @media (max-width: 720px) {
@@ -2437,12 +2523,28 @@ a:focus-visible {
     font-size: 3.2rem;
   }
 
+  .certification-summary {
+    gap: 0.5rem;
+  }
+
+  .stackable-verifications {
+    gap: 0.22rem;
+  }
+
+  .stackable-verify {
+    min-width: 0;
+    padding: 0.32rem;
+    font-size: 0.36rem;
+  }
+
   .certification-stage {
     max-height: 34rem;
   }
 
   .certification-list {
-    gap: 0.45rem;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+    gap: 0.35rem;
   }
 
   .certification-card {
@@ -2465,6 +2567,11 @@ a:focus-visible {
     padding-right: 0.25rem;
     font-size: clamp(0.92rem, 4.4vw, 1.1rem);
     white-space: normal;
+  }
+
+  .certification-verify {
+    padding: 0.25rem 0.28rem;
+    font-size: 0.35rem;
   }
 
   .certification-card time {

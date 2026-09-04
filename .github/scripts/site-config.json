@@ -36,7 +36,8 @@
     "/.well-known/security.txt",
     "/assets/research/cerberus-research-paper.pdf",
     "/assets/generic_images/the5horseman.jpg",
-    "/assets/generic_images/ataturk-signature.svg"
+    "/assets/generic_images/ataturk-signature.svg",
+    "/credentials.js"
   ],
   "viewports": [
     { "name": "mobile", "width": 390, "height": 844 },
@@ -49,6 +50,8 @@
   },
   "content_invariants": {
     "certification_count": 8,
+    "credential_verification_count": 9,
+    "stackable_verification_count": 3,
     "archive_image_count": 10,
     "historical_flag_count": 22,
     "forbidden_public_text": [
